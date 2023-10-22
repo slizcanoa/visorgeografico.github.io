@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Visor Geografico </title>
+
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"/>
+  <!-- Leaflet-MiniMap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.css" />
+  <style>
+
+    #map {
+    height: 85vh;
+	width: 100%;
+    
+    
+    }
+
+    div#coordinates {
+    width: 160px;
+    display: table;
+    background-color: #ff6600;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 12px;
+    border: 3px solid #ff6600;
+    position: absolute;
+    z-index: 800;
+    top:496px;
+    left: 264px;
+    font-weight: 200;
+    font-size: 12px;
+}
+.leaflet-touch .leaflet-bar a:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background-color: #ff6600 !important;
+    color: #fff !important;
+}
+img.logo_compensar {width: 230px;
+    position: relative;
+    left: 70px;
+	top:30px;
+	}
+.options__menu{
+  
+    top: 47px;
+}
+.options__menu a{
+    color: #000000;
+    cursor: default;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+}
+.options__menu a:hover{
+    color: #ff6600;
+}
+
+  </style>
+  </head>
+
+ 
+
+<div id="coordinates"></div>
+  
+ 
+  
+    
+    <header>
+        <div class="icon__menu">
+            <i class="fas fa-bars" id="btn_open"></i>
+        </div>
+
+<select name="select-location" id="select-location">
+		<option value="-1">Seleccione un Pozo:</option>
+        <option value="4.4233,-73.9394">Volver a la vista inicial</option>
+		<option value="4.4218,-73.9472">Pozo 1</option>
+		<option value="4.4216,-73.9452">Pozo 2</option>	
+		<option value="4.4232,-73.9438">Pozo 3</option>
+		<option value="4.4236,-73.9440">Pozo 4</option>
+		<option value="4.4245,-73.9437">Pozo 5</option>
+		<option value="4.4247,-73.9437">Pozo 6</option>
+		<option value="4.4262,-73.9430">Pozo 7</option>
+		<option value="4.4268,-73.9434">Pozo 8</option>		
+		<option value="4.4272,-73.9451">Pozo 9</option>		
+		<option value="4.4293,-73.9429">Pozo 10</option>
+
+                <option value="4.4290,-73.9439">Pozo 11</option>
+		<option value="4.4287,-73.9400">Pozo 12</option>	
+		<option value="4.4277,-73.9406">Pozo 13</option>
+		<option value="4.4271,-73.9405">Pozo 14</option>
+		<option value="4.4268,-73.9405">Pozo 15</option>
+		<option value="4.4264,-73.9405">Pozo 16</option>
+		<option value="4.4260,-73.9418">Pozo 17</option>
+		<option value="4.4258,-73.9419">Pozo 18</option>		
+		<option value="4.4242,-73.9398">Pozo 19</option>		
+		<option value="4.4245,-73.9392">Pozo 20</option>
+
+                <option value="4.4245,-73.9389">Pozo 21</option>
+		<option value="4.4246,-73.9403">Pozo 22</option>	
+		<option value="4.4246,-73.9392">Pozo 23</option>
+		<option value="4.4251,-73.9406">Pozo 24</option>
+		<option value="4.4234,-73.9395">Pozo 25</option>
+		<option value="4.4222,-73.9376">Pozo 26</option>
+		<option value="4.4208,-73.9381">Pozo 27</option>
+		<option value="4.4235,-73.9405">Pozo 28</option>		
+		<option value="4.4224,-73.9379">Pozo 29</option>		
+		<option value="4.4226,-73.9404">Pozo 30</option>
+
+                <option value="4.4233,-73.9404">Pozo 31</option>
+		<option value="4.4220,-73.9407">Pozo 32</option>	
+		<option value="4.4210,-73.9412">Pozo 33</option>
+		<option value="4.4202,-73.9411">Pozo 34</option>
+		<option value="4.4204,-73.9411">Pozo 35</option>
+		<option value="4.4216,-73.9381">Pozo 36</option>
+		<option value="4.4232,-73.9377">Pozo 37</option>
+		<option value="4.4224,-73.9382">Pozo 38</option>		
+		<option value="4.4209,-73.9388">Pozo 39</option>		
+		<option value="4.4216,-73.9382">Pozo 40</option>
+
+                <option value="4.4189,-73.9363">Pozo 41</option>
+		<option value="4.4195,-73.9366">Pozo 42</option>	
+		<option value="4.4228,-73.9353">Pozo 43</option>
+		<option value="4.4224,-73.9355">Pozo 44</option>
+		<option value="4.4234,-73.9351">Pozo 45</option>
+		<option value="4.4239,-73.9310">Pozo 46</option>
+		<option value="4.4214,-73.9320">Pozo 47</option>
+		<option value="4.4250,-73.9333">Pozo 48</option>		
+		<option value="4.4230,-73.9383">Pozo 49</option>		
+		<option value="4.4239,-73.9384">Pozo 50</option>
+
+                <option value="4.4236,-73.9383">Pozo 51</option>
+		<option value="4.4245,-73.9377">Pozo 52</option>	
+		<option value="4.4247,-73.9369">Pozo 53</option>
+		<option value="4.4269,-73.9334">Pozo 54</option>
+		<option value="4.4271,-73.9325">Pozo 55</option>
+		<option value="4.4265,-73.9330">Pozo 56</option>
+		<option value="4.4267,-73.9340">Pozo 57</option>
+		<option value="4.4263,-73.9343">Pozo 58</option>		
+		<option value="4.4181,-73.9397">Pozo 59</option>		
+		<option value="4.4166,-73.9382">Pozo 60</option>
+
+                <option value="4.4142,-73.9379">Pozo 61</option>
+		<option value="4.4171,-73.9355">Pozo 62</option>	
+		<option value="4.4153,-73.9354">Pozo 63</option>
+		<option value="4.4198,-73.9471">Pozo 64</option>
+		<option value="4.4213,-73.9361">Pozo 65</option>
+		<option value="4.4216,-73.9361">Pozo 66</option>
+		<option value="4.4217,-73.9362">Pozo 67</option>
+		<option value="4.4232,-73.9421">Pozo 68</option>		
+		<option value="4.4234,-73.9424">Pozo 69</option>		
+		<option value="4.4234,-73.9421">Pozo 70</option>
+
+         
+      	
+	</select>
+
+
+    </header>
+	
+	
+  <body>
+
+  <!--Menu lateral inicio-->
+  <body id="body">
+
+
+   <div class="menu__side" id="menu_side">
+   
+
+        <img src="https://recorrido.ucompensar.edu.co/skin/Image_018C49C4_1D5D_33C9_41B8_A70BB6CD663A_es.png?v=1663705559729"class="logo_compensar"/>
+       
+
+        
+
+        <div class="options__menu">	
+
+            <a href="http://localhost:9091/visor.html" class="selected">
+                <div class="option">
+                    <i class="fas fa-home icon-orange" title="Inicio"></i>
+                    <h4 class="text-black">Inicio</h4>
+                </div>
+            </a>
+
+           
+            
+            <a href="http://localhost:9098/">
+                <div class="option">
+                    <i class="fa-solid fa-folder-open icon-orange" title="Cursos"></i>
+					
+						
+                    <h4>Consulta de datos </h4>
+                </div>
+            </a>
+
+            <a href="http://localhost:9099/">
+                <div class="option">
+                    <i class="far fa-sticky-note icon-orange" title="Blog"></i>
+                    <h4>Módulo de Administrador</h4>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/ucompensar/?hl=es">
+                <div class="option">
+                    <i class="fa-brands fa-instagram icon-orange" title="Contacto"></i>
+                    <h4>Instagram</h4>
+                </div>
+            </a>
+
+            <a href="https://ucompensar.edu.co/">
+                <div class="option">
+                    <i class="fa-solid fa-pencil icon-orange" title="Nosotros"></i>
+				
+                    <h4>Ucompensar</h4>
+                </div>
+            </a>
+			
+            <a href="https://www.facebook.com/UCompensar/">
+                <div class="option">
+                    <i class="fa-brands fa-facebook icon-orange" title="Portafolio"></i>
+					
+                    <h4>Facebook</h4>
+                </div>
+            </a>
+        </div>
+
+    </div>
+  
+
+ 
+
+  <!--Menu lateral final-->
+
+  <div id="map"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- Leaflet-MiniMap JS -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js"></script>
+  <script src="layers/suelos.js"></script>
+  <script src="layers/cobersuelos.js"></script>
+  <script src="layers/curvas.js"></script>
+  <script src="app.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script type="text/javascript">
+		
+        var num = 1;
+
+		$(".icon__menu").click(function(event) {
+
+            if(num == 1){
+
+                $(".logo_compensar").css('left', '0px');
+                $(".logo_compensar").css('opacity', '1');
+
+                
+                num = 0;
+
+            }else{
+
+                $(".logo_compensar").css('left', '70px');
+                $(".logo_compensar").css('opacity', '0');
+                num = 1;
+            }   
+			
+		});	
+</script>
+    
+
+
+</body>
+ 
+
+</html>
+
+

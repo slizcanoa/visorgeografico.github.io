@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+	
+body{
+    margin-left: 80px;
+    margin-top: 80px;
+    transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+main{
+    padding: 20px;
+}
+
+
+/* Estilos CSS para la escala personalizada */
+.custom-scale {
+    font-size: 14px; /* Tamaño de fuente personalizado */
+    background-color: rgba(255, 255, 255, 0.7); /* Color de fondo */
+    border: 1px solid #999; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espaciado interior */
+}
+
+
+
+
+header{
+     width: 100%;
+    height: 88px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 200;
+}
+.txt_visor {
+    font-size: 23px;
+    margin-left: 20px;
+    color: #ff6600;
+    position: relative;
+    top: -3px;
+    font-weight: 600;
+}
+
+.icon__menu{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(10px);
+}
+
+.icon__menu i{
+   font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    color: #ff6600;
+}
+
+.menu__side {
+    width: 80px;
+    height: 100%;
+    background: #f5f5f5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #000000;
+    font-size: 15px;
+    z-index: 800;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-right: 20px solid #E5E5E5;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+/*Ocultar scroll para chrome, safari y opera*/
+.menu__side::-webkit-scrollbar{
+    display: none;
+}
+
+/*Ocultar scroll para IE, Edge y Firefox*/
+.menu__side{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.name__page{
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.name__page {
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.options__menu{
+    padding: 20px 30px;
+    position: relative;
+    top: 47px;
+}
+img.logo_compensar {
+    width: 50px;
+    position: relative;
+    left: 70px;
+}
+.leaflet-touch .leaflet-bar a:last-child {
+   
+    color: #ff6600 !important;
+}
+.mover_left{
+    padding-left: 14px;
+}
+
+.options__menu a{
+    color: #000000;
+    cursor: default;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+}
+
+.icon-orange {
+    color: #FF6811;
+}
+
+
+
+.options__menu a{
+    color: #ffffffb2;
+    cursor: default;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+}
+
+.options__menu a:hover{
+    color: white;
+}
+
+.options__menu .option{
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.options__menu .option i{
+    width: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.options__menu .option h4{
+    font-weight: 300;
+    cursor: pointer;
+}
+
+a.selected{
+    color: #000000;
+}
+
+.selected:before{
+    content: '';
+    width: 3px;
+    height: 80%;
+    background: white;
+    position: absolute;
+    top: 10%;
+    left: -30px;
+}
+
+/*Clases para usar en JavaScript*/
+
+.body_move{
+    margin-left: 250px;
+}
+
+.menu__side_move{
+    width: 250px;
+}
+
+
+@media screen and (max-width: 760px){
+    .body_move{
+        margin-left: 0px;
+    }
+
+    .menu__side_move{
+        width: 80px;
+        left: -80px;
+    }
+}
+
+
+
+/*Objeto control para suelos*/
+
+#map {
+  width: 100%;
+    height: 80%;
+    box-shadow: 5px 5px 5px #888;
+    padding: 0;
+    margin: 0;
+}
+/* responsive inicio */
+
+ 
+/* responsive final */
+
+.info { 
+    padding: 6px 8px; 
+    font: 14px/16px Arial, Helvetica, sans-serif; 
+    background: white; 
+    background: rgba(255,255,255,0.8); 
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+    border-radius: 5px; 
+} 
+
+.info h4 { 
+    margin: 0 0 5px; 
+    color: #777; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
